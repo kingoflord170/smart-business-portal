@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Dashboard</title>
+
+    <!-- Materialize CSS -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            background-color: #ffffff; /* crispy white */
+            font-family: 'Roboto', sans-serif;
+        }
+
+        /* ===== TOP BAR ===== */
+        .topbar {
+            height: 64px;
+            background-color: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+        }
+
+        .topbar-title {
+            font-size: 18px;
+            font-weight: 500;
+            color: #263238;
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            position: fixed;
+            top: 64px;
+            left: 0;
+            width: 220px;
+            height: calc(100vh - 64px);
+            background-color: #263238;
+        }
+
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 20px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .sidebar a:hover {
+            background-color: #37474f;
+        }
+
+        /* ===== MAIN ===== */
+        .main {
+            margin-left: 220px;
+            margin-top: 64px;
+            padding: 24px;
+        }
+
+        /* ===== CARDS ===== */
+        .stat-card {
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+        }
+
+        .stat-title {
+            font-size: 14px;
+            color: #607d8b;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 600;
+            color: #263238;
+        }
+
+        .stat-icon {
+            font-size: 36px;
+            color: #009688;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+    <div class="topbar-title">Employee Panel</div>
+    <div>
+        <span class="grey-text text-darken-2">Welcome, {{ session.username }}</span>
+        <a href="/logout" class="btn-flat teal-text">Logout</a>
+    </div>
+</div>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <a href="/employee">
+        <i class="material-icons">dashboard</i>Dashboard
+    </a>
+    <a href="/employee/tasks">
+        <i class="material-icons">checklist</i>My Tasks
+    </a>
+    <a href="#">
+        <i class="material-icons">person</i>Profile
+    </a>
+    <a href="/logout">
+        <i class="material-icons">logout</i>Logout
+    </a>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main">
+
+    <h5 class="grey-text text-darken-3">Employee Dashboard</h5>
+
+    <div class="row">
+
+        <!-- Assigned Tasks -->
+        <div class="col s12 m6 l4">
+            <div class="card stat-card">
+                <div class="card-content">
+                    <span class="stat-title">Assigned Tasks</span>
+                    <div class="row valign-wrapper">
+                        <div class="col s8 stat-value">{{ assigned }}</div>
+                        <div class="col s4 right-align">
+                            <i class="material-icons stat-icon">assignment</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Completed Tasks -->
+        <div class="col s12 m6 l4">
+            <div class="card stat-card">
+                <div class="card-content">
+                    <span class="stat-title">Completed</span>
+                    <div class="row valign-wrapper">
+                        <div class="col s8 stat-value">{{ completed }}</div>
+                        <div class="col s4 right-align">
+                            <i class="material-icons stat-icon">task_alt</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status -->
+        <div class="col s12 m6 l4">
+            <div class="card stat-card">
+                <div class="card-content">
+                    <span class="stat-title">Status</span>
+                    <div class="row valign-wrapper">
+                        <div class="col s8 stat-value">Active</div>
+                        <div class="col s4 right-align">
+                            <i class="material-icons stat-icon">online_prediction</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Materialize JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</body>
+</html>

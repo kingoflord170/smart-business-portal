@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assign Task</title>
+
+    <!-- Materialize CSS -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background-color: #ffffff; /* crispy white */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .form-card {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        .card-title {
+            color: #263238; /* charcoal */
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        /* Focus accent */
+        .input-field input:focus + label,
+        .input-field textarea:focus + label {
+            color: #009688 !important;
+        }
+
+        .input-field input:focus,
+        .input-field textarea:focus {
+            border-bottom: 1px solid #009688 !important;
+            box-shadow: 0 1px 0 0 #009688 !important;
+        }
+
+        .btn-teal {
+            background-color: #009688;
+        }
+
+        .btn-teal:hover {
+            background-color: #00796b;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="form-card">
+    <div class="card">
+        <div class="card-content">
+
+            <span class="card-title center">Assign Task</span>
+
+            <form method="post" action="/assign_task">
+
+                <!-- Employee Select -->
+                <div class="input-field">
+                    <i class="material-icons prefix">person</i>
+                    <select name="employee" required>
+                        <option value="" disabled selected>Select Employee</option>
+                        {% for e in employees %}
+                        <option value="{{ e.username }}">{{ e.username }}</option>
+                        {% endfor %}
+                    </select>
+                    <label>Employee</label>
+                </div>
+
+                <!-- Task Description -->
+                <div class="input-field">
+                    <i class="material-icons prefix">assignment</i>
+                    <textarea name="task" class="materialize-textarea" required></textarea>
+                    <label>Task Description</label>
+                </div>
+
+                <!-- Buttons -->
+                <div class="row">
+                    <div class="col s6">
+                        <button type="submit"
+                                class="btn btn-teal waves-effect waves-light">
+                            Assign
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                    <div class="col s6 right-align">
+                        <a href="/manager" class="btn-flat teal-text">
+                            Back
+                        </a>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<!-- Materialize JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('select');
+        M.FormSelect.init(elems);
+        M.updateTextFields();
+    });
+</script>
+
+</body>
+</html>

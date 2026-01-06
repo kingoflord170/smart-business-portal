@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Not Found</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: url("{{ url_for('static', filename='images/404.png') }}") no-repeat center center;
+            background-size: cover;   /* use 'cover' if you want crop */
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+        }
+
+        .content {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .content h3 {
+            margin: 10px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #0A2540;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <h3>Oops! Page not found</h3>
+        <p>The page you are looking for doesn’t exist.</p>
+        <a href="/" class="btn">Go to Login</a>
+    </div>
+</body>
+</html>

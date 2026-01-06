@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Tasks</title>
+
+    <!-- Materialize CSS -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            background-color: #ffffff; /* crispy white */
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .page {
+            padding: 32px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+        }
+
+        .table-header {
+            color: #263238;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        .status-pending {
+            color: #ff9800;
+            font-weight: 500;
+        }
+
+        .status-completed {
+            color: #009688;
+            font-weight: 600;
+        }
+
+        .btn-teal {
+            background-color: #009688;
+        }
+
+        .btn-teal:hover {
+            background-color: #00796b;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <h5 class="table-header">My Assigned Tasks</h5>
+
+    <div class="card">
+        <div class="card-content">
+
+            {% if tasks %}
+
+            <table class="highlight responsive-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Task</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                {% for t in tasks %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ t.task }}</td>
+                        <td>
+                            {% if t.status == 'Completed' %}
+                                <span class="status-completed">Completed</span>
+                            {% else %}
+                                <span class="status-pending">Pending</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if t.status != 'Completed' %}
+                                <a href="/complete_task/{{ t.id }}"
+                                   class="btn-small btn-teal waves-effect waves-light">
+                                    Complete
+                                </a>
+                            {% else %}
+                                <i class="material-icons teal-text">check_circle</i>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+
+            {% else %}
+                <p class="grey-text">No tasks assigned.</p>
+            {% endif %}
+
+        </div>
+    </div>
+
+    <div class="right-align" style="margin-top: 16px;">
+        <a href="/employee" class="btn-flat teal-text">
+            Back
+        </a>
+    </div>
+
+</div>
+
+<!-- Materialize JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</body>
+</html>
